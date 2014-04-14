@@ -20,7 +20,7 @@ And then execute:
 
 ```ruby
 class Package
-  enum_attr :status, {out_of_stock: -1, ready: 0, selling: 1}, default: 0
+  # enum_attr :status, {out_of_stock: -1, ready: 0, selling: 1}, default: 0
 
   # or you can use symbol as default value
   enum_attr :status, {out_of_stock: -1, ready: 0, selling: 1}, default: :ready
@@ -32,6 +32,25 @@ package.ready?              # => true
 package.out_of_stock!       # => -1
 package.ready?              # => false
 package.status              # => -1
+Package.available_statuses  # => {out_of_stock: -1, ready: 0, selling: 1}
+package.available_statuses  # => {out_of_stock: -1, ready: 0, selling: 1}
+```
+
+or you can use array, too
+
+```ruby
+class Package
+  # enum_attr :status, [-1, 0, 1]
+
+  # you can also specify a default value
+  # NOTIFICATION: default value a real value, not index of array
+  enum_attr :status, [-1, 0, 1], default: 0
+end
+
+package = Package.new
+package.status              # => 0
+Package.available_statuses  # => [-1, 0, 1]
+package.available_statuses  # => [-1, 0, 1]
 ```
 
 ## Contributing
