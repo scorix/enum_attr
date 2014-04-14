@@ -42,6 +42,8 @@ describe 'enum_attr' do
     it { should respond_to :sex }
     it { should respond_to :sex= }
     it { should be_male }
+    its(:available_sexes) { should eq male: 0, female: 1 }
+    its('class.available_sexes') { should eq male: 0, female: 1 }
 
     context 'change sex...' do
       before { subject.female! }
@@ -68,6 +70,8 @@ describe 'enum_attr' do
     it { should respond_to :sex }
     it { should respond_to :sex= }
     it { should be_female }
+    its(:available_sexes) { should eq male: 0, female: 1 }
+    its('class.available_sexes') { should eq male: 0, female: 1 }
 
     context 'change sex...' do
       before { subject.male! }
@@ -94,6 +98,8 @@ describe 'enum_attr' do
     it { should respond_to :sex }
     it { should respond_to :sex= }
     its(:sex) { should be_nil }
+    its(:available_sexes) { should eq [0, 1] }
+    its('class.available_sexes') { should eq [0, 1] }
 
     context 'change sex...' do
       before { subject.sex = 1 }
@@ -117,6 +123,8 @@ describe 'enum_attr' do
     it { should respond_to :sex }
     it { should respond_to :sex= }
     its(:sex) { should eq 0 }
+    its(:available_sexes) { should eq [0, 1] }
+    its('class.available_sexes') { should eq [0, 1] }
 
     context 'change sex...' do
       before { subject.sex = 1 }
@@ -142,6 +150,8 @@ describe 'enum_attr' do
     it { should respond_to :sex }
     it { should respond_to :sex= }
     its(:sex) { should eq 0 }
+    its(:available_sexes) { should eq [1, 0] }
+    its('class.available_sexes') { should eq [1, 0] }
 
     context 'change sex...' do
       before { subject.sex = 1 }
@@ -172,6 +182,8 @@ describe 'enum_attr' do
     it { should respond_to :sex= }
     its(:sex) { should eq 0 }
     its(:name) { should eq 'scorix' }
+    its(:available_sexes) { should eq [0, 1] }
+    its('class.available_sexes') { should eq [0, 1] }
 
     context 'change sex...' do
       before { subject.sex = 1 }
