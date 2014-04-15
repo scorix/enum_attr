@@ -203,10 +203,11 @@ describe 'enum_attr' do
   # test enum_attr in an ActiveRecord::Base class
   #
   context 'ActiveRecord::Base' do
+    let(:db) { File.join(File.dirname(__FILE__), 'db', 'test.db') }
     before do
+      FileUtils.rm_rf(db) and File.open(db, 'w')
       require 'active_record'
-
-      ActiveRecord::Base.establish_connection('adapter' => 'sqlite3', 'database' => 'db/test.db')
+      ActiveRecord::Base.establish_connection('adapter' => 'sqlite3', 'database' => db)
       ActiveRecord::Base.logger = Logger.new(STDOUT)
 
       ActiveRecord::Migration.class_eval do
@@ -273,14 +274,14 @@ describe 'enum_attr' do
       it 'should change sex to female and save' do
         people = People.first
         people.reload.sex.should eq 0
-        people.female!
+        people.female!.should eq true
         people.reload.sex.should eq 1
       end
 
       it 'change sex to male and save' do
         people = People.first
         people.reload.sex.should eq 0
-        people.male!
+        people.male!.should eq true
         people.reload.sex.should eq 0
       end
     end

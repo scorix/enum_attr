@@ -29,7 +29,7 @@ end
 package = Package.new
 package.status              # => 0
 package.ready?              # => true
-package.out_of_stock!       # => -1
+package.out_of_stock!       # => true
 package.ready?              # => false
 package.status              # => -1
 Package.available_statuses  # => {out_of_stock: -1, ready: 0, selling: 1}
