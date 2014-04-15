@@ -35,3 +35,6 @@ Gemfile.lock
 
 # ide files
 .idea/
+
+# test db file
+spec/db/
